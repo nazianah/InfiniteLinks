@@ -1,7 +1,9 @@
 import React from 'react'
 
-export const Rootlayout = () => {
+const RootLayout = () => {
   return (
-    <div>Rootlayout</div>
+    <div>RootLayout</div>
   )
 }
+
+export default RootLayout
