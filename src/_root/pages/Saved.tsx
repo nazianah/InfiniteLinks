@@ -1,19 +1,19 @@
 import { Models } from "appwrite";
-
 import { GridPostList, Loader } from "@/components/shared";
 import { useGetCurrentUser } from "@/lib/react-query/queries";
 
 const Saved = () => {
   const { data: currentUser } = useGetCurrentUser();
 
+  // Check if currentUser and currentUser.save are defined before mapping
   const savePosts = currentUser?.save
-    .map((savePost: Models.Document) => ({
-      ...savePost.post,
-      creator: {
-        imageUrl: currentUser.imageUrl,
-      },
-    }))
-    .reverse();
+    ? currentUser.save.map((savePost: Models.Document) => ({
+        ...savePost.post,
+        creator: {
+          imageUrl: currentUser.imageUrl,
+        },
+      })).reverse()
+    : [];
 
   return (
     <div className="saved-container">
